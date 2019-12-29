@@ -6,7 +6,7 @@ export default function App() {
 // empty can be used to pass in variables
 // useEffect will rerun based on variables otherwise empty array will only run one time
   useEffect(function() {
-    io("http://192.168.0.10:3001")
+    io("http://192.168.1.2:3001")
   }, [])
 
   return (
