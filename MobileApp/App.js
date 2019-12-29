@@ -1,26 +1,13 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import io from "socket.io-client";
+console.ignoredYellowBox = ['Remote debugger'];
+import React from 'react';
+import { YellowBox } from 'react-native';
+import HomeScreen from './screens/HomeScreen';
+YellowBox.ignoreWarnings([
+    'Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?'
+]);
 
 export default function App() {
-// empty can be used to pass in variables
-// useEffect will rerun based on variables otherwise empty array will only run one time
-  useEffect(function() {
-    io("http://192.168.1.2:3001")
-  }, [])
-
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+      <HomeScreen />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
