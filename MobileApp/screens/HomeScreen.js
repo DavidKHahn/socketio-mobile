@@ -16,10 +16,21 @@ const socket = useRef(null);
 // empty can be used to pass in variables
 // useEffect will rerun based on variables otherwise empty array will only run one time
   useEffect(() => {
-    socket.current = io("http://192.168.0.4:3001");
+    socket.current = io("http://192.168.1.3:3001");
     socket.current.on("message", message => {
-        // saves received msgs
-         setRecvMessages(prevState => [...prevState, message]);
+        const testMessage = {
+            _id: 3,
+            text: 'Hello developer',
+            createdAt: new Date(),
+            user: {
+              _id: 2,
+              name: 'React Native',
+              avatar: 'https://placeimg.com/140/140/any'
+            }
+          };
+        testMessage.text = message;
+        // saves sent msgs
+        setRecvMessages(prevState => GiftedChat.append(prevState, testMessage));
     });
     setRecvMessages([
         {
@@ -29,23 +40,32 @@ const socket = useRef(null);
           user: {
             _id: 2,
             name: 'React Native',
-            avatar: 'https://placeimg.com/140/140/any',
-          },
+            avatar: 'https://placeimg.com/140/140/any'
+          }
         },
+        {
+            _id: 2,
+            text: 'Hello from myself!',
+            createdAt: new Date(),
+            user: {
+              _id: 1,
+              name: 'React Native',
+              avatar: 'https://placeimg.com/140/140/any'
+            }
+          },
       ]);
   }, []);
 
-  const sendMessage = () => {
-    socket.current.emit("message", messageToSend);
-    // clears message after sent
-    setMessageToSend("");
+  const onSend = (messages) => {
+    console.log(messages);
+    socket.current.emit("message", messages[0].text);
   }
 
   return (
     <View style={{flex: 1}}>
     <GiftedChat
     messages={recvMessages}
-    // onSend={messages => this.onSend(messages)}
+    onSend={messages => onSend(messages)}
     user={{
       _id: 1,
     }}
