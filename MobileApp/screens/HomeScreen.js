@@ -1,6 +1,7 @@
 console.ignoredYellowBox = ['Remote debugger'];
 import React, { useEffect, useRef, useState } from 'react';
-import { StyleSheet, Text, TextInput, View, YellowBox } from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, View, YellowBox } from 'react-native';
+import { GiftedChat } from 'react-native-gifted-chat';
 import io from "socket.io-client";
 YellowBox.ignoreWarnings([
     'Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?'
@@ -15,12 +16,23 @@ const socket = useRef(null);
 // empty can be used to pass in variables
 // useEffect will rerun based on variables otherwise empty array will only run one time
   useEffect(() => {
-
-    socket.current = io("http://192.168.1.3:3001");
+    socket.current = io("http://192.168.0.4:3001");
     socket.current.on("message", message => {
         // saves received msgs
          setRecvMessages(prevState => [...prevState, message]);
     });
+    setRecvMessages([
+        {
+          _id: 1,
+          text: 'Hello developer',
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: 'React Native',
+            avatar: 'https://placeimg.com/140/140/any',
+          },
+        },
+      ]);
   }, []);
 
   const sendMessage = () => {
@@ -29,20 +41,19 @@ const socket = useRef(null);
     setMessageToSend("");
   }
 
-  const textOfRecvMessages = recvMessages.map(msg => (
-      <Text key={msg}>{msg}</Text>
-  ));
-
   return (
-    <View style={styles.container}>
-        {textOfRecvMessages}
-      <TextInput
-        value={messageToSend}
-        onChangeText={text => setMessageToSend(text)} // updates state of message
-        placeholder="Enter chat message..."
-        onSubmitEditing={sendMessage}
-        />
-    </View>
+    <View style={{flex: 1}}>
+    <GiftedChat
+    messages={recvMessages}
+    // onSend={messages => this.onSend(messages)}
+    user={{
+      _id: 1,
+    }}
+  />
+    {
+      Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />
+   }
+  </View>
   );
 }
 
