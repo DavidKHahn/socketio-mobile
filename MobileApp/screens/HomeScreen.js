@@ -10,12 +10,18 @@ export default function HomeScreen() {
 // messageToSend current state
 // setMessageToSend updating state
 const [messageToSend, setMessageToSend] = useState("");
+const [recvMessages, setRecvMessages] = useState([]);
 const socket = useRef(null);
 // empty can be used to pass in variables
 // useEffect will rerun based on variables otherwise empty array will only run one time
   useEffect(() => {
-    socket.current = io("http://192.168.1.2:3001");
-  }, [])
+
+    socket.current = io("http://192.168.1.3:3001");
+    socket.current.on("message", message => {
+        // saves received msgs
+         setRecvMessages(prevState => [...prevState, message]);
+    });
+  }, []);
 
   const sendMessage = () => {
     socket.current.emit("message", messageToSend);
@@ -23,9 +29,13 @@ const socket = useRef(null);
     setMessageToSend("");
   }
 
+  const textOfRecvMessages = recvMessages.map(msg => (
+      <Text key={msg}>{msg}</Text>
+  ));
+
   return (
     <View style={styles.container}>
-      <Text>Hello, Welcome to MobileApp!</Text>
+        {textOfRecvMessages}
       <TextInput
         value={messageToSend}
         onChangeText={text => setMessageToSend(text)} // updates state of message

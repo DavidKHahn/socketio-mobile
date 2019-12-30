@@ -2,8 +2,10 @@ const io = require("socket.io")();
 
 io.on("connection", socket => {
     console.log("User connected!");
+    // listen for msg event
     socket.on("message", message => {
         console.log(message);
+        io.emit("message", message);
     })
 })
 
