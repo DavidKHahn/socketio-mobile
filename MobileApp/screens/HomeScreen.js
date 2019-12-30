@@ -10,7 +10,6 @@ YellowBox.ignoreWarnings([
 export default function HomeScreen() {
 // messageToSend current state
 // setMessageToSend updating state
-const [messageToSend, setMessageToSend] = useState("");
 const [recvMessages, setRecvMessages] = useState([]);
 const socket = useRef(null);
 // empty can be used to pass in variables
@@ -26,7 +25,8 @@ const socket = useRef(null);
   const onSend = (messages) => {
     console.log(messages);
     socket.current.emit("message", messages[0].text);
-  }
+    setRecvMessages(prevState => GiftedChat.append(prevState, messages));
+  };
 
   return (
     <View style={{flex: 1}}>
