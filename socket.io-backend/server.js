@@ -7,7 +7,10 @@ const userIds = {};
 io.on("connection", socket => {
     console.log("User connected!");
     console.log(socket.id);
-    userIds[socket.id] = currentUserId++;
+    userIds[socket.id] = {userId: currentUserId++}
+    socket.on("join", username => {
+      userIds[socket.id].username = username
+    })
     // listen for msg event
     messageHandler.handleMessage(socket, userIds)
 })
