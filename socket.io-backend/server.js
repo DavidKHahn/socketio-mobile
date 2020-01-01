@@ -33,6 +33,8 @@ io.on("connection", socket => {
                 console.log("Got join event", action.data);
                 users[socket.id].username = action.data;
                 users[socket.id].avatar = createUserAvatarUrl();
+                const values = Object.values(users);
+                socket.emit("action", {type: "users_online", data: values});
                 break;
         }
     })
