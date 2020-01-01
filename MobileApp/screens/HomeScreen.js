@@ -31,17 +31,25 @@ const socket = useRef(null);
     setRecvMessages(prevState => GiftedChat.append(prevState, messages));
   };
 
+  const joinChat = username => {
+      socket.current.emit("join", username);
+      // updates state to 'true' changing ternary operator to GiftedChat instead of JoinScreen
+      setHasJoined(true);
+  }
+
   return (
     <View style={{flex: 1}}>
         {hasJoined ? (
             <GiftedChat
+                renderUsernameOnMessage
                 messages={recvMessages}
                 onSend={messages => onSend(messages)}
                 user={{
                 _id: 1,
                 }}
             />
-            ) : ( <JoinScreen />
+            ) : (
+            <JoinScreen joinChat={joinChat} />
         )}
 
     {
