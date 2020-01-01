@@ -34,7 +34,9 @@ io.on("connection", socket => {
                 users[socket.id].username = action.data;
                 users[socket.id].avatar = createUserAvatarUrl();
                 const values = Object.values(users);
-                socket.emit("action", {type: "users_online", data: values});
+                const onlyWithUsernames = values.filter(u => u.username !== undefined);
+                // io emits to all users while socket to only same user
+                io.emit("action", {type: "users_online", data: onlyWithUsernames});
                 break;
         }
     })

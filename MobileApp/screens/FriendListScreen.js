@@ -5,5 +5,6 @@ export default function FriendListScreen(){
     return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <Text>FriendList!</Text>
-    </View>)
+    </View>
+    )
 }
