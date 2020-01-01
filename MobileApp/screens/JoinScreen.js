@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Image, KeyboardAvoidingView, Platform, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 
-export default function JoinScreen({ joinChat }) {
+export default function JoinScreen({ navigation }) {
     const dispatch = useDispatch();
     const [username, setUsername] = useState("");
     return (
@@ -16,7 +16,10 @@ export default function JoinScreen({ joinChat }) {
                 placeholder="Enter username"
             />
             {/* dispatching actions make things change */}
-            <Button title="Join Chat" onPress={() => dispatch({type: "server/join", data: username })} />
+            <Button title="Join Chat" onPress={() => {
+                dispatch({type: "server/join", data: username });
+                navigation.navigate("App");
+            }} />
             </View>
             {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
         </View>
