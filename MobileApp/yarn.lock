@@ -2291,6 +2291,10 @@ growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
 
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+
 has-binary2@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/has-binary2/-/has-binary2-1.0.3.tgz#7776ac627f3ea77250cfc332dab7ddf5e4f5d11d"
@@ -2339,6 +2343,10 @@ has-values@^1.0.0:
 hermes-engine@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/hermes-engine/-/hermes-engine-0.2.1.tgz#25c0f1ff852512a92cb5c5cc47cf967e1e722ea2"
+
+hoist-non-react-statics@^2.3.1:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
 hoist-non-react-statics@^3.3.0:
   version "3.3.1"
@@ -3676,6 +3684,15 @@ react-native-communications@2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-native-communications/-/react-native-communications-2.2.1.tgz#7883b56b20a002eeb790c113f8616ea8692ca795"
 
+react-native-gesture-handler@~1.5.0:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.5.3.tgz#191b44701fab7ba54c27a2438cb5eaa252666e66"
+  dependencies:
+    hammerjs "^2.0.8"
+    hoist-non-react-statics "^2.3.1"
+    invariant "^2.2.4"
+    prop-types "^15.7.2"
+
 react-native-gifted-chat@^0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/react-native-gifted-chat/-/react-native-gifted-chat-0.13.0.tgz#0151a092a2e8b3c3a754f2b6ffe3ca3069d8dac8"
@@ -3699,11 +3716,15 @@ react-native-lightbox@^0.8.1:
   dependencies:
     prop-types "^15.7.2"
 
-"react-native-parsed-text@git+https://github.com/EvanBacon/react-native-parsed-text.git":
+"react-native-parsed-text@https://github.com/EvanBacon/react-native-parsed-text.git":
   version "0.0.22"
-  resolved "git+https://github.com/EvanBacon/react-native-parsed-text.git#f55c4713c62961f13a2eec99cbc1ec619615ee72"
+  resolved "https://github.com/EvanBacon/react-native-parsed-text.git#f55c4713c62961f13a2eec99cbc1ec619615ee72"
   dependencies:
     prop-types "^15.5.10"
+
+react-native-reanimated@~1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.4.0.tgz#7f1acbf9be08492d834f512700570978052be2f9"
 
 react-native-view-shot@3.0.2:
   version "3.0.2"
