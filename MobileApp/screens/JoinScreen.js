@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Image, KeyboardAvoidingView, Platform, TextInput, View } from 'react-native';
+import { Button, Image, KeyboardAvoidingView, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 export default function JoinScreen({ navigation }) {
@@ -21,7 +21,7 @@ export default function JoinScreen({ navigation }) {
                 navigation.navigate("App");
             }} />
             </View>
-            {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
+            <KeyboardAvoidingView behavior="padding" />
         </View>
     )
 }

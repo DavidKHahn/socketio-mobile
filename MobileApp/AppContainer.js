@@ -1,9 +1,9 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from "react-navigation-stack";
-import HomeScreen from './screens/HomeScreen';
+import FriendListScreen from './screens/FriendListScreen';
 import JoinScreen from './screens/JoinScreen';
 
-const AppStack = createStackNavigator({ Home: HomeScreen });
+const AppStack = createStackNavigator({ Home: FriendListScreen });
 
 export default createAppContainer(
     createSwitchNavigator({
