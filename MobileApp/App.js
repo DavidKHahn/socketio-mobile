@@ -1,6 +1,6 @@
 import React from 'react';
 import { YellowBox } from 'react-native';
-import HomeScreen from './screens/HomeScreen';
+import AppContainer from './AppContainer';
 console.ignoredYellowBox = ['Remote debugger'];
 console.disableYellowBox = true
 YellowBox.ignoreWarnings([
@@ -9,6 +9,6 @@ YellowBox.ignoreWarnings([
 
 export default function App() {
   return (
-      <HomeScreen />
+      <AppContainer />
   );
 }

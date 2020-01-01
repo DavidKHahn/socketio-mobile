@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { KeyboardAvoidingView, Platform, View, YellowBox } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import io from "socket.io-client";
-import JoinScreen from './JoinScreen';
 
 YellowBox.ignoreWarnings([
     'Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?'
@@ -39,7 +38,6 @@ const socket = useRef(null);
 
   return (
     <View style={{flex: 1}}>
-        {hasJoined ? (
             <GiftedChat
                 renderUsernameOnMessage
                 messages={recvMessages}
@@ -48,10 +46,6 @@ const socket = useRef(null);
                 _id: 1,
                 }}
             />
-            ) : (
-            <JoinScreen joinChat={joinChat} />
-        )}
-
     {
       Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />
    }
