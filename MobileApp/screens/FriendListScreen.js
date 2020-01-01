@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 
 export default function FriendListScreen({navigation}){
     const usersOnline = useSelector(state => state.usersOnline);
-    console.log("usersOnline", usersOnline);
-
     const { itemContainerStyle, avatarImageStyle, avatarNameViewStyle } = styles;
 
     return (
@@ -13,7 +11,6 @@ export default function FriendListScreen({navigation}){
         <FlatList
             data={usersOnline}
             renderItem={({item}) => {
-                console.log("item", item);
                 return (
                 <TouchableOpacity onPress={() => navigation.navigate("Chat", {name: item.username, userId: item.userId})}>
                     <View style={itemContainerStyle}>

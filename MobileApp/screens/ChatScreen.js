@@ -2,7 +2,7 @@ import React from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Header } from 'react-navigation-stack';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // access properties passed from FriendListScreen
 ChatScreen.navigationOptions = screenProps => ({
@@ -12,6 +12,7 @@ ChatScreen.navigationOptions = screenProps => ({
 
 export default function ChatScreen({navigation}) {
   const dispatch = useDispatch();
+  const selfUser = useSelector(state => state.selfUser);
   return (
     <View style={{flex: 1}}>
             <GiftedChat
@@ -22,7 +23,7 @@ export default function ChatScreen({navigation}) {
                 // pass in data: messages
                   dispatch({type: "server/private-message", data: {text: messages[0].text, to: navigation.getParam("userId") }})}
                 user={{
-                  _id: 1,
+                  _id: selfUser.userId,
                 }}
             />
     {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={Header.HEIGHT + 20} />}
