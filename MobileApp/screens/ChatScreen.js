@@ -22,9 +22,17 @@ export default function ChatScreen({navigation}) {
                 renderUsernameOnMessage
                 messages={messages}
                 onSend={messages =>
+                  {
+                    dispatch({type: "private_message", data: {text: messages[0], conversationId: userId }
+                  });
+                    dispatch({
+                      type: "server/private_message",
+                      data: {text: messages[0], conversationId: userId }
+                    });
+                }
+              }
                 // 'private_message' goes directly to the socket.io backend
                 // pass in data: messages
-                  dispatch({type: "private_message", data: {text: messages[0], conversationId: userId }})}
                 user={{
                   _id: selfUser.userId,
                 }}
