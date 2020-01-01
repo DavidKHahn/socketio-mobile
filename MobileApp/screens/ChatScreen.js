@@ -13,15 +13,18 @@ ChatScreen.navigationOptions = screenProps => ({
 export default function ChatScreen({navigation}) {
   const dispatch = useDispatch();
   const selfUser = useSelector(state => state.selfUser);
+  const conversations = useSelector(state => state.conversations);
+  const userId = navigation.getParam("userId");
+  const messages = conversations[userId].messages;
   return (
     <View style={{flex: 1}}>
             <GiftedChat
                 renderUsernameOnMessage
-                messages={[]}
+                messages={messages}
                 onSend={messages =>
-                // 'server/' goes directly to the socket.io backend
+                // 'private_message' goes directly to the socket.io backend
                 // pass in data: messages
-                  dispatch({type: "server/private-message", data: {text: messages[0].text, to: navigation.getParam("userId") }})}
+                  dispatch({type: "private_message", data: {text: messages[0], conversationId: userId }})}
                 user={{
                   _id: selfUser.userId,
                 }}
