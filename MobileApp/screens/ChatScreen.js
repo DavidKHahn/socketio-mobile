@@ -1,6 +1,11 @@
 import React from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
+// access properties passed from FriendListScreen
+ChatScreen.navigationOptions = screenProps => ({
+  // grab name property from navigation
+  title : screenProps.navigation.getParam("name")
+})
 
 export default function ChatScreen() {
   return (
