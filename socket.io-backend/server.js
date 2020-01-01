@@ -45,6 +45,8 @@ io.on("connection", socket => {
                 // io emits to all users while socket to only same user
                 io.emit("action", {type: "users_online", data: createUsersOnline()});
                 break;
+            case "server/private-message":
+                console.log("Got a private-message", action.data);
         }
     })
 })
