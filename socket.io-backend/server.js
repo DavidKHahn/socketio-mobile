@@ -16,7 +16,7 @@ io.on("connection", socket => {
     console.log(socket.id);
     users[socket.id] = {userId: currentUserId++}
     socket.on("join", username => {
-        users[socket.id].username = username
+      users[socket.id].username = username
       // creates unique user avatar
       users[socket.id].avatar = createUserAvatarUrl();
         // listen for msg event
@@ -28,6 +28,12 @@ io.on("connection", socket => {
                 console.log("Got hello event", action.data);
             // sends action back with type message and data of "Good day!"
                 socket.emit("action", {type: "message", data: "Good day!"});
+                break;
+            case "server/join":
+                console.log("Got join event", action.data);
+                users[socket.id].username = action.data;
+                users[socket.id].avatar = createUserAvatarUrl();
+                break;
         }
     })
 })

@@ -1,11 +1,13 @@
 import React from 'react';
 import { YellowBox } from 'react-native';
+import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client';
 import AppContainer from './AppContainer';
 const socket = io("http://192.168.1.3:3001")
 const socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
+
 // client receives message into the reducer of action type message
 // adds message data into state
 function reducer(state = {}, action) {
@@ -32,6 +34,8 @@ YellowBox.ignoreWarnings([
 
 export default function App() {
   return (
+    <Provider store={store}>
       <AppContainer />
+    </Provider>
   );
 }
