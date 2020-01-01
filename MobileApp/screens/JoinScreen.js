@@ -3,7 +3,7 @@ import { Button, Image, KeyboardAvoidingView, Platform, TextInput, View } from '
 
 export default function JoinScreen() {
     return (
-        <View style={{flex: 1, alignContent: "center", justifyContent: "center"}}>
+        <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
             <Image resizeMode="contain" style={{ flex: 1 }} source={require("../assets/chat-icon.png")} />
             <View style={{ flex: 1, justifyContent: "space-around" }}>
             <TextInput style={{ fontSize: 30, textAlign: "center" }}placeholder="Enter username" />
