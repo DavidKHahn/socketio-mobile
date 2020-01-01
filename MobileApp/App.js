@@ -17,10 +17,21 @@ const socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
 
 // client receives message into the reducer of action type message
 // adds message data into state
-function reducer(state = {}, action) {
+function reducer(state = {conversations: {} }, action) {
   switch(action.type) {
     case "users_online":
-      return {...state, usersOnline: action.data };
+      const conversations = { ...state.conversations };
+      const usersOnline = action.data;
+      for (let i = 0; i < usersOnline.length; i++) {
+        const userId = usersOnline[i].userId;
+        if(conversations[userId] === undefined) {
+          conversations[userId] = {
+            messages: [],
+            username: usersOnline[i].username
+          }
+        }
+      }
+      return {...state, usersOnline, conversations };
     case "private_message":
       const conversationId = action.data.conversationId;
       return {
