@@ -1,12 +1,12 @@
 import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
 export default function FriendListScreen(){
     const usersOnline = useSelector(state => state.usersOnline);
     console.log("usersOnline", usersOnline);
 
-    const { itemContainerStyle } = styles;
+    const { itemContainerStyle, avatarImageStyle, avatarNameViewStyle } = styles;
 
     return (
     <View style={{ flex: 1 }}>
@@ -15,12 +15,14 @@ export default function FriendListScreen(){
             renderItem={({item}) => {
                 console.log("item", item);
                 return (
-                <View style={itemContainerStyle}>
-                    <Image style={{ width: 100, height: 100, borderRadius: 50 }} source={{ uri: item.avatar }} />
-                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <Text>{item.username}</Text>
-                </View>
-                </View>
+                <TouchableOpacity>
+                    <View style={itemContainerStyle}>
+                        <Image style={avatarImageStyle} source={{ uri: item.avatar }} />
+                        <View style={avatarNameViewStyle}>
+                        <Text style={{ fontSize: 20 }}>{item.username}</Text>
+                    </View>
+                    </View>
+                </TouchableOpacity>
                 );
             }}
             keyExtractor={item => item.userId}
@@ -30,5 +32,7 @@ export default function FriendListScreen(){
 }
 
 const styles = StyleSheet.create({
-    itemContainerStyle: {flex: 1, flexDirection: "row"}
+    itemContainerStyle: {flex: 1, flexDirection: "row"},
+    avatarImageStyle: { width: 100, height: 100, borderRadius: 50 },
+    avatarNameViewStyle: { flex: 1, justifyContent: "center", alignItems: "center" }
 })
