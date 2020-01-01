@@ -1,6 +1,8 @@
 import React from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
+import { Header } from 'react-navigation-stack';
+
 // access properties passed from FriendListScreen
 ChatScreen.navigationOptions = screenProps => ({
   // grab name property from navigation
@@ -18,7 +20,7 @@ export default function ChatScreen() {
                   _id: 1,
                 }}
             />
-    {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
+    {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={Header.HEIGHT + 20} />}
   </View>
   );
 }
